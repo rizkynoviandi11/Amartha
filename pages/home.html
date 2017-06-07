@@ -1,0 +1,25 @@
+<div class="jumbotron text-center">
+        <h1>{{title}}</h1>
+
+        <p>{{ message }}</p>
+</div>
+
+<div class="jumbotron text-center" >
+		<p>List Staff Intern:</p>
+		<table class="table table-bordered">
+			<thead>
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Position</th>	
+			</tr>	
+			</thead>
+			<tbody>
+				<tr ng-repeat="(key,row) in users">
+					<td>{{row.name}}</td>
+					<td>{{row.age}}</td>
+					<td>{{row.position}}</td>	
+				</tr>
+			</tbody>	
+		</table>
+</div>

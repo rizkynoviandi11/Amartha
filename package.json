@@ -1,0 +1,11 @@
+{
+  "Author": "Rizky Noviandi Purwono",
+  "Project": "Latihan Angular",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "mongodb": "^2.0.43",
+    "mongoose": "^4.9.9"
+  }
+}
