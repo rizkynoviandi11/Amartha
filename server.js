@@ -5,17 +5,24 @@ var app = express();
 var mongoose = require('mongoose');
 var url = "mongodb://localhost:27017/test";
 var User = require('./model/user');
-var cors = require('cors');
+var path = require('path');
+//var cors = require('cors');
+
+app.set('views', 'public');
+app.set('view engine', 'html');
 
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(bodyParser.json());
+app.use(express.static('public'));
+
 // configure app to use bodyParser()
 // this will let us get the data from a POST app.use(bodyParser.urlencoded({ extended: true })); app.use(bodyParser.json());
 var port = process.env.PORT || 8080;        // set our port
 var router = express.Router();     // instance of the express Router
 
-router.get('/', function(req, res) {
-     res.json({ message: 'Welcome to my web service.' });    
+app.get('/', function(req, res) {
+      res.status(200).sendFile(path.join(__dirname+'public/index.html'));
+      //res.render('index');   
 });
 
 // middleware to use for all requests
@@ -48,7 +55,7 @@ router.route('/users')
 			res.json(users);
 		});
 	});
-//setting cors
+/*//setting cors
 var originsWhitelist = [
   'http://localhost:80/Angular'      //this is my front-end url for development
 ];
@@ -60,14 +67,7 @@ var corsOptions = {
   credentials:true
 }
 //use cors
-app.use(cors(corsOptions));
-
-/*app.all('/*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
-  res.header("Access-Control-Allow-Methods", "GET, POST","PUT");
-  next();
-});*/
+app.use(cors(corsOptions));*/
 
 // Register the routes
 app.use('/api', router);
